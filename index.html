@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crystal Collector</title>
+
+  <!-- Added link to the jQuery Library -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+
+<h1>Crystal Collector Game</h1>
+<p>Click on a crystal to increase your score.  If you can get your score to match the random number, you win.  If you exceed the random number, you lose.</p>
+
+<div>Goal Number:</div><div class="goal-number"></div>
+<div>Your Total:</div><div class = "your-total"></div>
+<div>Losses:</div><div class = "losses"></div>
+<div>Total Wins:</div><div class = "wins"></div>
+
+
+
+
+<img class="crystal-1" src="assets/images/CrystalMaster.jpg" width="200" height ="150">
+
+
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+
+
+    var wins = 0;
+    var losses = 0;
+
+//When the page loads, the user is assigned a random number betwen 19 and 20
+
+
+//create a function that assigns a random number to the goalNumber variable 
+
+  function generateGoal () {
+
+    var goalNum = Math.floor(Math.random()* 102) + 19;
+
+
+    $(".goal-number").html(goalNum);
+
+    return goalNum;
+
+    }
+
+var goalNumber = generateGoal(); 
+
+console.log("goal Number is " + goalNumber);
+
+
+
+//There are four crystal buttons. When the game starts, every button is assigned a random number between 1 and 12 
+
+function assignCrystal1 () {
+
+    var crysVal = Math.floor(Math.random()* 12) + 1;
+
+    console.log("re assigning the random crystal number" + crysVal);
+
+    return crysVal;
+
+}
+
+
+var crystalValue1 = assignCrystal1();
+
+  console.log("crystal value1 is" + crystalValue1);
+
+
+  var UserTot = 0;
+
+
+//each the user clicks on a crystal, the number of points that crystal is worth is added to the user's total score
+
+$(".crystal-1").on("click", function (){
+
+
+    UserTot += crystalValue1; 
+
+    $(".your-total").html(UserTot);
+
+    if (UserTot > goalNumber) {
+
+      losses ++;
+
+
+      $(".losses").html(losses);
+
+      goalNumber = generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue1 = assignCrystal1 ();
+
+      }
+
+    else if (UserTot === goalNumber) {
+
+      wins ++;
+
+
+     $(".wins").html(wins);
+
+      generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue1 = assignCrystal1 ();
+
+    }
+
+    //end of onclick crystal1 function
+
+    });
+
+
+//end of document ready function
+
+  });
+
+
+
+
+//If the total score equals the random number, the user wins and gets one point added to the win number and the game is reset - the random number is reset to a different number, the total is reset to zero and the random number that belongs to each of the crystals is reset to another random number
+
+
+
+//If the total score goes over hte random number that is generated, the "losses" number increases by 1 and the game is reset - the random number is reset to a different number, the total is reset to zero, and the random number that belong to each of the crystals is reset to another random number 
+
+    
+
+  </script>
+  
+</body>
+</html>
