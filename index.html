@@ -4,8 +4,17 @@
   <meta charset="UTF-8">
   <title>Crystal Collector</title>
 
+  
+<script type="text/javascript" src="assets/javascript/game.js"></script>
+
+
   <!-- Added link to the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+
+ <link rel="stylesheet" type="text/css" 
+ href="assets/css/style.css">
 
   <!-- Added a link to Bootstrap-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -13,22 +22,31 @@
 </head>
 <body>
 
+
+
+
 <h1>Crystal Collector Game</h1>
 <p>Click on a crystal to increase your score.  If you can get your score to match the random number, you win.  If you exceed the random number, you lose.</p>
 
-<div>Goal Number:</div><div class="goal-number"></div>
-<div>Your Total:</div><div class = "your-total"></div>
-<div>Losses:</div><div class = "losses"></div>
-<div>Total Wins:</div><div class = "wins"></div>
+<span>Goal Number: </span><span class="goal-number"></span>
+<br>
+<span>Your Total: </span><span class = "your-total"></span>
+<br>
+<span>Losses: </span><span class = "losses"></span>
+<br>
+<span>Total Wins: </span><span class = "wins"></span>
+<br>
 
 
 
+<img class="crystal-1" src="assets/images/CrystalMaster.jpg" width="150" height ="100">
+<img class="crystal-2" src="assets/images/crystal2.jpg" width="150" height ="100">
 
-<img class="crystal-1" src="assets/images/CrystalMaster.jpg" width="200" height ="150">
+<img class="crystal-3" src="assets/images/crystal3.jpg" width="150" height ="100">
 
+<img class="crystal-4" src="assets/images/crystal4.jpg" width="150" height ="100">
 
-
-  <script type="text/javascript">
+ <script>
 
     $(document).ready(function() {
 
@@ -55,7 +73,7 @@
 
 var goalNumber = generateGoal(); 
 
-console.log("goal Number is " + goalNumber);
+//console.log("goal Number is " + goalNumber);
 
 
 
@@ -65,16 +83,51 @@ function assignCrystal1 () {
 
     var crysVal = Math.floor(Math.random()* 12) + 1;
 
-    console.log("re assigning the random crystal number" + crysVal);
+
+    return crysVal;
+
+}
+
+function assignCrystal2 () {
+
+    var crysVal = Math.floor(Math.random()* 12) + 1;
+
 
     return crysVal;
 
 }
 
 
+function assignCrystal3 () {
+
+    var crysVal = Math.floor(Math.random()* 12) + 1;
+
+
+    return crysVal;
+
+}
+
+
+function assignCrystal4 () {
+
+    var crysVal = Math.floor(Math.random()* 12) + 1;
+
+
+    return crysVal;
+
+}
+
+
+
+
+
 var crystalValue1 = assignCrystal1();
 
-  console.log("crystal value1 is" + crystalValue1);
+var crystalValue2 = assignCrystal2();
+
+var crystalValue3 = assignCrystal3();
+
+var crystalValue4 = assignCrystal4();
 
 
   var UserTot = 0;
@@ -82,11 +135,19 @@ var crystalValue1 = assignCrystal1();
 
 //each the user clicks on a crystal, the number of points that crystal is worth is added to the user's total score
 
+
+
+
+
+
+
+
 $(".crystal-1").on("click", function (){
 
 
     UserTot += crystalValue1; 
 
+    
     $(".your-total").html(UserTot);
 
     if (UserTot > goalNumber) {
@@ -103,6 +164,9 @@ $(".crystal-1").on("click", function (){
       $(".your-total").html(UserTot);
 
       crystalValue1 = assignCrystal1 ();
+      crystalValue2 = assignCrystal2 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
 
       }
 
@@ -120,6 +184,9 @@ $(".crystal-1").on("click", function (){
       $(".your-total").html(UserTot);
 
       crystalValue1 = assignCrystal1 ();
+      crystalValue2 = assignCrystal2 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
 
     }
 
@@ -128,22 +195,195 @@ $(".crystal-1").on("click", function (){
     });
 
 
-//end of document ready function
 
-  });
+var crystalValue2 = assignCrystal2();
 
-
-
-
-//If the total score equals the random number, the user wins and gets one point added to the win number and the game is reset - the random number is reset to a different number, the total is reset to zero and the random number that belongs to each of the crystals is reset to another random number
+  //console.log("crystal value2 is" + crystalValue1);
 
 
+  var UserTot = 0;
 
-//If the total score goes over hte random number that is generated, the "losses" number increases by 1 and the game is reset - the random number is reset to a different number, the total is reset to zero, and the random number that belong to each of the crystals is reset to another random number 
+
+//each the user clicks on a crystal, the number of points that crystal is worth is added to the user's total score
+
+$(".crystal-2").on("click", function (){
+
+
+    UserTot += crystalValue2; 
+
 
     
+    $(".your-total").html(UserTot);
 
-  </script>
+    if (UserTot > goalNumber) {
+
+      losses ++;
+
+
+      $(".losses").html(losses);
+
+      goalNumber = generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue2 = assignCrystal2 ();
+      crystalValue1 = assignCrystal1 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
+
+      }
+
+    else if (UserTot === goalNumber) {
+
+      wins ++;
+
+
+     $(".wins").html(wins);
+
+      generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue2 = assignCrystal2 ();
+      crystalValue1 = assignCrystal1 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
+
+    }
+
+    //end of onclick crystal2 function
+
+    });
+
+
+
+
+$(".crystal-3").on("click", function (){
+
+
+    UserTot += crystalValue3; 
+
+    
+    $(".your-total").html(UserTot);
+
+    if (UserTot > goalNumber) {
+
+      losses ++;
+
+
+      $(".losses").html(losses);
+
+      goalNumber = generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue1 = assignCrystal1 ();
+      crystalValue2 = assignCrystal2 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
+
+
+      }
+
+    else if (UserTot === goalNumber) {
+
+      wins ++;
+
+
+     $(".wins").html(wins);
+
+      generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue1 = assignCrystal1 ();
+      crystalValue2 = assignCrystal2 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
+
+
+    }
+
+    //end of onclick crystal3 function
+
+    });
+
+
+
+
+
+$(".crystal-4").on("click", function (){
+
+
+    UserTot += crystalValue4; 
+
+    
+    $(".your-total").html(UserTot);
+
+    if (UserTot > goalNumber) {
+
+      losses ++;
+
+
+      $(".losses").html(losses);
+
+      goalNumber = generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue1 = assignCrystal1 ();
+      crystalValue2 = assignCrystal2 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
+
+      }
+
+    else if (UserTot === goalNumber) {
+
+      wins ++;
+
+
+     $(".wins").html(wins);
+
+      generateGoal();
+
+      UserTot = 0;
+
+      $(".your-total").html(UserTot);
+
+      crystalValue1 = assignCrystal1 ();
+      crystalValue2 = assignCrystal2 ();
+      crystalValue3 = assignCrystal3 ();
+      crystalValue4 = assignCrystal4 ();
+
+    }
+
+    //end of onclick crystal4 function
+
+    });
+    
+
+});
+
+
+
+//end of document ready function
+
+
+
+
+</script>
+
   
 </body>
 </html>
